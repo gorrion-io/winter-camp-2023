@@ -1,7 +1,10 @@
+import { useState, useEffect, Fragment } from "react";
+
 import Card from "../Card";
 import { viking } from "../../../types";
 
 const SingleViking: React.FC<{ viking: viking }> = (props) => {
+  const [gotAnyFightingSkills, setGotAnyFightingSkills] = useState(false);
   const {
     viking: {
       fullName,
@@ -13,6 +16,13 @@ const SingleViking: React.FC<{ viking: viking }> = (props) => {
       canFightWithSpear,
     },
   } = props;
+
+  //
+  useEffect(() => {
+    if (canFightWithSword || canFightWithAxe || canFightWithSpear) {
+      setGotAnyFightingSkills(true);
+    }
+  }, [canFightWithSword, canFightWithAxe, canFightWithSpear]);
 
   return (
     <Card>
@@ -26,12 +36,16 @@ const SingleViking: React.FC<{ viking: viking }> = (props) => {
           <li>Age: {age}</li>
           <li>Hometown: {hometown} </li>
         </ul>
-        <h2>Fighting skills:</h2>
-        <ul>
-          <li>Can fight with sword: {canFightWithSword ? "Yes" : "No Data"}</li>
-          <li>Can fight with axe: {canFightWithAxe ? "Yes" : "No Data"}</li>
-          <li>Can fight with spear: {canFightWithSpear ? "Yes" : "No Data"}</li>
-        </ul>
+        {gotAnyFightingSkills && (
+          <Fragment>
+            <h2>Fighting skills:</h2>
+            <ul>
+              {canFightWithSword && <li>Can fight with sword. </li>}
+              {canFightWithAxe && <li>Can fight with axe. </li>}
+              {canFightWithSpear && <li>Can fight with spear. </li>}
+            </ul>
+          </Fragment>
+        )}
       </div>
     </Card>
   );

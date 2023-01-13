@@ -8,7 +8,7 @@ export type viking = {
   canFightWithSpear: boolean;
 };
 
-export type notYetVikingJSON = {
+export type rawJsonViking = {
   fullName: string;
   village: string;
   age: number;
@@ -16,7 +16,7 @@ export type notYetVikingJSON = {
   hasSon: boolean;
 };
 
-export type notYetVikingYAML = {
+export type rawYamlViking = {
   name: string;
   weapon: string;
   name_of_father: string;
