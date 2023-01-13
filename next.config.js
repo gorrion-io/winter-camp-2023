@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
+};
 
-module.exports = nextConfig
+const withYaml = require("next-yaml");
+
+module.exports = nextConfig;
+module.exports = withYaml();
