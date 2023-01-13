@@ -1,0 +1,65 @@
+.page {
+  height: 100vh;
+  position: relative;
+}
+.page__top-wrap {
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page__top-wrap .vikings-list__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 300px;
+  font-size: 24px;
+  padding: 20px 0;
+}
+.page__bottom-wrap {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page__bottom-wrap .vikings-list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  -moz-column-gap: 100px;
+       column-gap: 100px;
+  background: white;
+}
+.page__bottom-wrap .vikings-list__item {
+  padding: 20px;
+  font-size: 15px;
+  gap: 5px;
+}
+
+.vikings-list {
+  padding: 20px;
+  list-style-type: none;
+  gap: 20px;
+}
+.vikings-list__item {
+  gap: 10px;
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 8px;
+}
+.vikings-list__item .section h4 {
+  margin: 0;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 24px;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+}/*# sourceMappingURL=index.css.map */

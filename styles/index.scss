@@ -1,0 +1,75 @@
+.page {
+    height: 100vh;
+    position: relative;
+
+    &__top-wrap {
+        height: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .vikings-list {
+            &__item {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                width: 300px;
+                font-size: 24px;
+                padding: 20px 0;
+            }
+        }
+    }
+
+    &__bottom-wrap {
+        height: 40%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .vikings-list {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 100px;
+            background: white;
+
+            &__item {
+                padding: 20px;
+                font-size: 15px;
+                gap: 5px;
+            }
+        }
+    }
+}
+
+.vikings-list {
+    padding: 20px;
+    list-style-type: none;
+    gap: 20px;
+
+    &__item {
+        gap: 10px;
+        text-align: center;
+        border: 3px solid black;
+        border-radius: 8px;
+
+        .section {
+            h4 {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 24px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
