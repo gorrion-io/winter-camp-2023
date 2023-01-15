@@ -26,7 +26,7 @@ type Viking = {
 function transformData(data: yaml | json): Viking {
   if ("name" in data) {
     return {
-      fullName: data.name,
+      fullName: data.name + " " + data.name_of_father + "son",
       presenceOfChildren: data.number_of_children > 0,
       age: data.years_old,
       hometown: data.has_home_in,
@@ -47,10 +47,16 @@ function transformData(data: yaml | json): Viking {
   }
 }
 
-export default async function getStaticProps(yaml: [yaml], json: Array<json>) {
+function getValidVikings(vikings: Viking[]): Viking[] {
+  return vikings.filter((viking) => viking.age > 25 && viking.age < 65);
+}
+
+export default function ValidateMergeYamlJsonData(
+  yaml: [yaml],
+  json: Array<json>
+) {
   const datayaml = yaml.map((data: yaml) => transformData(data));
   const datajson = json.map((data: json) => transformData(data));
 
-  const connectedArray = [...datajson, ...datayaml];
-  return connectedArray;
+  return getValidVikings([...datajson, ...datayaml]);
 }
