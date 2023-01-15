@@ -1,12 +1,10 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import getStaticProps from "../lib/vikings";
-import yamldata from "../vikings.yaml";
-import jsondata from "../vikings.json";
 import Vikings from "./vikings";
+import getVikings from "./api/getVikings";
+
 export default function Home() {
-  const data = getStaticProps(yamldata, jsondata);
-  console.log(data);
+  server.get("/api/vikings", getVikings);
   return (
     <div className={styles.container}>
       <Head>
