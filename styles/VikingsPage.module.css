@@ -1,0 +1,29 @@
+.wrapper {
+  width: fit-content;
+  display: grid;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    grid-template-columns: repeat(4, 18rem);
+  }
+}
+
+@media (min-device-width: 768px) and (max-width: 1024px) {
+  .wrapper {
+    grid-template-columns: repeat(3, 18rem);
+  }
+}
+
+@media (min-device-width: 480px) and (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 18rem);
+  }
+}
+
+@media (min-device-width: 375px) and (max-width: 480px) {
+  .wrapper {
+    grid-template-columns: 18rem;
+  }
+}

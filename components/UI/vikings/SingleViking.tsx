@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from "react";
 
 import Card from "../Card";
 import { viking } from "../../../types";
+import styles from "./SingleViking.module.css";
 
 const SingleViking: React.FC<{ viking: viking }> = (props) => {
   const [gotAnyFightingSkills, setGotAnyFightingSkills] = useState(false);
@@ -17,7 +18,6 @@ const SingleViking: React.FC<{ viking: viking }> = (props) => {
     },
   } = props;
 
-  //
   useEffect(() => {
     if (canFightWithSword || canFightWithAxe || canFightWithSpear) {
       setGotAnyFightingSkills(true);
@@ -25,28 +25,22 @@ const SingleViking: React.FC<{ viking: viking }> = (props) => {
   }, [canFightWithSword, canFightWithAxe, canFightWithSpear]);
 
   return (
-    <Card>
-      <div>
-        <h2>Warrior Name: {fullName}</h2>
+    <Card className={styles["card-margin"]}>
+      <div className={styles.name}>
+        <p className={styles["border--small"]}>{fullName}</p>
       </div>
-      <div>
-        <h2>Attributes: </h2>
-        <ul>
-          <li>Children: {presenceOfChildren ? "Yes" : "No"}</li>
-          <li>Age: {age}</li>
-          <li>Hometown: {hometown} </li>
-        </ul>
+      <ul>
+        <li>Children: {presenceOfChildren ? "Yes" : "No"}</li>
+        <li>Age: {age}</li>
+        <li>Hometown: {hometown} </li>
         {gotAnyFightingSkills && (
           <Fragment>
-            <h2>Fighting skills:</h2>
-            <ul>
-              {canFightWithSword && <li>Can fight with sword. </li>}
-              {canFightWithAxe && <li>Can fight with axe. </li>}
-              {canFightWithSpear && <li>Can fight with spear. </li>}
-            </ul>
+            {canFightWithSword && <li>Can fight with sword. </li>}
+            {canFightWithAxe && <li>Can fight with axe. </li>}
+            {canFightWithSpear && <li>Can fight with spear. </li>}
           </Fragment>
         )}
-      </div>
+      </ul>
     </Card>
   );
 };

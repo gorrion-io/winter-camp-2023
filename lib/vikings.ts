@@ -1,5 +1,6 @@
 import { viking, rawJsonViking, rawYamlViking } from "../types";
 
+// Filters provided .json data from the same objects
 const getUniqueJsonArray = (rawJson: rawJsonViking[]) => {
   return rawJson.filter(
     (v: any, i: number, a: any) =>
@@ -11,6 +12,7 @@ const getUniqueJsonArray = (rawJson: rawJsonViking[]) => {
   );
 };
 
+// Filters provided .yaml data from the same objects
 const getUniqueYamlArray = (rawJson: rawYamlViking[]) => {
   return rawJson.filter(
     (v: any, i: number, a: any) =>
@@ -27,10 +29,9 @@ const getUniqueYamlArray = (rawJson: rawYamlViking[]) => {
   );
 };
 
+// Maps raw .json object to viking type
 const mapJsonToViking = (rawJson: rawJsonViking[]) => {
-  const uniqueRawJson = getUniqueJsonArray(rawJson);
-
-  const mappedVikings: viking[] = uniqueRawJson
+  const mappedVikings: viking[] = getUniqueJsonArray(rawJson)
     .filter((viking: rawJsonViking) => viking.age >= 25 && viking.age <= 65)
     .map((viking: rawJsonViking) => {
       return {
@@ -46,10 +47,9 @@ const mapJsonToViking = (rawJson: rawJsonViking[]) => {
   return mappedVikings;
 };
 
+// Maps raw .yaml object to viking type
 const mapYamlToViking = (rawYaml: rawYamlViking[]) => {
-  const uniqueRawYaml = getUniqueYamlArray(rawYaml);
-
-  const mappedVikings: viking[] = uniqueRawYaml
+  const mappedVikings: viking[] = getUniqueYamlArray(rawYaml)
     .filter(
       (viking: rawYamlViking) =>
         viking.years_old >= 25 && viking.years_old <= 65
@@ -69,6 +69,7 @@ const mapYamlToViking = (rawYaml: rawYamlViking[]) => {
   return mappedVikings;
 };
 
+// Filters out the same objects from the given arrays of viking type
 export const validateAndMergeArrays = (
   rawJson: rawJsonViking[],
   rawYaml: any
@@ -78,13 +79,12 @@ export const validateAndMergeArrays = (
 
   const names = new Set(mappedJsonVikings.map((viking) => viking.fullName));
   const villages = new Set(mappedJsonVikings.map((viking) => viking.hometown));
-  const merged = [
+  const mergedVikings = [
     ...mappedJsonVikings,
     ...mappedYamlVikings.filter((viking) => {
       return !names.has(viking.fullName) && !villages.has(viking.hometown);
     }),
   ];
 
-  console.log(merged);
-  return merged;
+  return mergedVikings;
 };
