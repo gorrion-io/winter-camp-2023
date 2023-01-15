@@ -7,7 +7,6 @@ export default function Vikings({ vikings }: { vikings: Viking[] }) {
   return (
     <div className={styles.container}>
       <h1>Vikings</h1>
-      {/* <pre>{JSON.stringify(vikings, null, 2)}</pre> */}
       <div className={styles['vikings-grid']}>
         {vikings.map((viking) => (
           <VikingCard key={viking.fullName} viking={viking} />
