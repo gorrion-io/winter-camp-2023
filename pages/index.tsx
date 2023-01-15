@@ -4,7 +4,6 @@ import Vikings from "./vikings";
 import getVikings from "./api/getVikings";
 
 export default function Home() {
-  server.get("/api/vikings", getVikings);
   return (
     <div className={styles.container}>
       <Head>
