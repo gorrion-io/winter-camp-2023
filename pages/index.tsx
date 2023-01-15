@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { getStaticProps } from "../lib/vikings";
-
+import getStaticProps from "../lib/vikings";
+import yamldata from "../vikings.yaml";
+import jsondata from "../vikings.json";
 export default function Home() {
-  getStaticProps();
+  console.log(getStaticProps(yamldata, jsondata));
   return (
     <div className={styles.container}>
       <Head>
