@@ -1,7 +1,6 @@
 import fs from "fs/promises";
 import yaml from "js-yaml";
-import { YamlViking, JsonViking, Viking } from "../types";
-import { VikingWeapon } from "../types";
+import { YamlViking, JsonViking, Viking, VikingWeapon } from "../types";
 
 const getRandomInt = (min: number, max: number): number => {
   min = Math.ceil(min);
