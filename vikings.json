@@ -68,5 +68,12 @@
     "age": 30,
     "valkyrie": "Skadul",
     "hasSon": false
+  },
+  {
+    "fullName": "Hæming Asbjornsson",
+    "village": "Hleiorargaror",
+    "age": 30,
+    "valkyrie": "Skadul",
+    "hasSon": false
   }
 ]
