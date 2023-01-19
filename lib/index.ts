@@ -23,37 +23,37 @@ export const getJsonVikings = async (): Promise<JsonViking[]> =>
 export const mapFromYamlVikingToViking = (
   yamlVikings: YamlViking[]
 ): Viking[] => {
-  return yamlVikings.reduce<Viking[]>((acc, curr) => {
-    const fullName = `${curr.name} ${curr.name_of_father}son`;
-    const viking: Viking = {
+  return yamlVikings.map((viking) => {
+    const fullName = `${viking.name} ${viking.name_of_father}son`;
+    const data: Viking = {
       fullName,
-      age: curr.years_old,
-      hometown: curr.has_home_in,
-      presenceOfChildren: curr.number_of_children > 0,
-      canFightWithAxe: curr.weapon === "axe",
-      canFightWithSpear: curr.weapon === "spear",
-      canFightWithSword: curr.weapon === "sword",
+      age: viking.years_old,
+      hometown: viking.has_home_in,
+      presenceOfChildren: viking.number_of_children > 0,
+      canFightWithAxe: viking.weapon === "axe",
+      canFightWithSpear: viking.weapon === "spear",
+      canFightWithSword: viking.weapon === "sword",
     };
 
-    return [...acc, viking];
-  }, []);
+    return data;
+  });
 };
 
 export const mapFromJsonVikingToViking = (
   jsonVikings: JsonViking[]
 ): Viking[] => {
-  return jsonVikings.reduce<Viking[]>((acc, curr) => {
+  return jsonVikings.map((viking) => {
     const weapon = getRandomWeapon();
-    const viking: Viking = {
-      fullName: curr.fullName,
-      age: curr.age,
-      hometown: curr.village,
-      presenceOfChildren: curr.hasSon,
+    const data: Viking = {
+      fullName: viking.fullName,
+      age: viking.age,
+      hometown: viking.village,
+      presenceOfChildren: viking.hasSon,
       canFightWithAxe: weapon === "axe",
       canFightWithSpear: weapon === "spear",
       canFightWithSword: weapon === "sword",
     };
 
-    return [...acc, viking];
-  }, []);
+    return data;
+  });
 };
