@@ -1,0 +1,22 @@
+.container {
+  width: 80%;
+  margin: 40px auto;
+}
+
+.vikings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+}
+
+@media screen and (max-width: 1200px) {
+  .vikings-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .vikings-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
