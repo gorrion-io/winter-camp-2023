@@ -17,37 +17,24 @@ const getYamlVikings = async (): Promise<YamlVikings> => await readYamlData('./v
 
 const getJsonVikings = (): JsonVikings => jsonVikings
 
-const prepareYamlViking = ({ name, weapon, name_of_father, has_home_in, years_old, number_of_children }: YamlViking): Viking => {
-  const viking: Viking = {
-    fullName: `${name} ${name_of_father}sson`,
-    presenceOfChildren: number_of_children > 0,
-    age: years_old,
-    hometown: has_home_in,
-    canFightWithSword: weapon === 'sword',
-    canFightWithAxe: weapon === 'axe',
-    canFightWithSpear: weapon === 'spear',
-  }
-  return viking
-}
+const prepareViking = (viking: YamlViking | JsonViking): Viking => {
+  const isFromYaml = 'weapon' in viking
+  const weapon = isFromYaml ? viking.weapon : getWeapon(availableWeapons)
 
-const prepareJsonViking = ({ fullName, hasSon, age, village }: JsonViking): Viking => {
-  const weapon: Weapon = getWeapon(availableWeapons)
-  const viking: Viking = {
-    fullName: fullName,
-    presenceOfChildren: hasSon,
-    age: age,
-    hometown: village,
+  const readyViking: Viking = {
+    fullName: isFromYaml ? `${viking.name} ${viking.name_of_father}sson` : viking.fullName,
+    presenceOfChildren: isFromYaml ? viking.number_of_children > 0 : viking.hasSon,
+    age: isFromYaml ? viking.years_old : viking.age,
+    hometown: isFromYaml ? viking.has_home_in : viking.village,
     canFightWithSword: weapon === 'sword',
     canFightWithAxe: weapon === 'axe',
     canFightWithSpear: weapon === 'spear',
   }
-  return viking
+  return readyViking
 }
 
 const mergeVikings = (jsonVikings: JsonVikings, yamlVikings: YamlVikings): Vikings => {
-  const vikingsFromJson: Vikings = jsonVikings.map((jsonViking) => prepareJsonViking(jsonViking))
-  const vikingsFromYaml: Vikings = yamlVikings.map((yamlViking) => prepareYamlViking(yamlViking))
-  const vikings: Vikings = [...vikingsFromJson, ...vikingsFromYaml]
+  const vikings: Vikings = [...jsonVikings, ...yamlVikings].map((viking) => prepareViking(viking))
   const filteredVikings = vikings.filter(({ age }) => isWithinAge(age))
   return filteredVikings
 }
