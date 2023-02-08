@@ -8,6 +8,35 @@ export type Viking = {
   canFightWithSpear: boolean
 }
 
+export type VikingId = {
+  fullName: string
+  presenceOfChildren: boolean
+  age: number
+  hometown: string
+  canFightWithSword: boolean
+  canFightWithAxe: boolean
+  canFightWithSpear: boolean
+  vikingId: number
+}
+
+export interface IViking {
+  fullName: string
+  presenceOfChildren: boolean
+  age: number
+  hometown: string
+  canFightWithSword: boolean
+  canFightWithAxe: boolean
+  canFightWithSpear: boolean
+}
+
+export interface IVikings {
+  vikings: IViking[]
+}
+
+export interface IVikingProp {
+  viking: IViking
+}
+
 export type Vikings = Viking[]
 
 export type JsonViking = {
