@@ -1,0 +1,17 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  min-height: 100vh;
+  padding: 10rem 2rem;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: no-repeat top fixed url("./../../public/images/background.jpg");
+  background-size: cover;
+}
